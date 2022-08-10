@@ -1,0 +1,10 @@
+torch
+Flask
+Flask_Cors
+Flask_RESTful
+numba
+numpy
+pandas
+streamlit
+transformers
+
