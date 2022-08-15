@@ -10,7 +10,8 @@ if btnResult:
     st.sidebar.text('Button pushed')
 
     # run query
-    model = torch.load('/content/drive/MyDrive/BESTmodel_weights.pt')
+    url = 'https://github.com/Ghani-25/waapred/blob/480d23412f924ad2d5e0585c819027c2b36765ca/BESTmodel_weights.pt'
+    model = torch.load(url)
     model.eval()
     from transformers import AutoTokenizer, AutoModelForSequenceClassification, DataCollatorWithPadding
     from torch.utils.data import DataLoader
