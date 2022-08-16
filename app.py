@@ -1,5 +1,7 @@
 import streamlit as st
 import torch
+import gdown
+import os
 import math
 import pandas as pd
 with st.sidebar.form("Input"):
@@ -10,16 +12,20 @@ if btnResult:
     st.sidebar.text('Button pushed')
 
     # run query
-    url = 'https://github.com/Ghani-25/waapred/blob/480d23412f924ad2d5e0585c819027c2b36765ca/BESTmodel_weights.pt'
+    modelfile = "https://drive.google.com/drive/u/3/folders/1EmXO09Yxm9BlPIhgOI5RrXmVHdA0Y3ny"
+    gdown.download_folder(modelfile, quiet=True, use_cookies=False)
+    url = 'model/BESTmodel_weights.pt'
     model = torch.load(url)
     model.eval()
+    # model = torch.hub.load_state_dict_from_url('https://github.com/Ghani-25/waapred/blob/db5336462ef64618a84fca6ba4e7224316fe7393/BESTmodel_weights.pt')
+    # model.eval()
     from transformers import AutoTokenizer, AutoModelForSequenceClassification, DataCollatorWithPadding
     from torch.utils.data import DataLoader
 
     BASE_MODEL = "camembert-base"
     tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
 
-    if torch.cuda.is_available():
+    if torch.cuda.is_available():       
         device = torch.device("cuda")
         print("Using GPU.")
     else:
