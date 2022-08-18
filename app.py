@@ -1,8 +1,8 @@
 import streamlit as st
-import torch
 import gdown
 import os
 import math
+import torch
 import pandas as pd
 with st.sidebar.form("Input"):
     queryText = st.text_area("Response rate to predict:", height=4, max_chars=None)
