@@ -15,7 +15,7 @@ if btnResult:
     modelfile = "https://drive.google.com/drive/u/3/folders/1EmXO09Yxm9BlPIhgOI5RrXmVHdA0Y3ny"
     gdown.download_folder(modelfile, quiet=True, use_cookies=False)
     url = 'model/BESTmodel_weights.pt'
-    model = torch.load(url)
+    model = torch.load(url, map_location=torch.device('cpu'))
     model.eval()
     # model = torch.hub.load_state_dict_from_url('https://github.com/Ghani-25/waapred/blob/db5336462ef64618a84fca6ba4e7224316fe7393/BESTmodel_weights.pt')
     # model.eval()
