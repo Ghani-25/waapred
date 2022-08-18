@@ -15,6 +15,13 @@ if btnResult:
     modelfile = "https://drive.google.com/drive/u/3/folders/1EmXO09Yxm9BlPIhgOI5RrXmVHdA0Y3ny"
     gdown.download_folder(modelfile, quiet=True, use_cookies=False)
     url = 'model/BESTmodel_weights.pt'
+    if torch.cuda.is_available():       
+        device = torch.device("cuda")
+        print("Using GPU.")
+    else:
+        print("No GPU available, using the CPU instead.")
+        device = torch.device("cpu")
+    model.to(device)    
     model = torch.load(url, map_location=torch.device('cpu'))
     model.eval()
     # model = torch.hub.load_state_dict_from_url('https://github.com/Ghani-25/waapred/blob/db5336462ef64618a84fca6ba4e7224316fe7393/BESTmodel_weights.pt')
@@ -24,14 +31,6 @@ if btnResult:
 
     BASE_MODEL = "camembert-base"
     tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
-
-    if torch.cuda.is_available():       
-        device = torch.device("cuda")
-        print("Using GPU.")
-    else:
-        print("No GPU available, using the CPU instead.")
-        device = torch.device("cpu")
-    model.to(device)
 
     y_preds = []
     encoded = tokenizer(queryText, truncation=True, padding="max_length", max_length=256, return_tensors="pt").to("cuda")
