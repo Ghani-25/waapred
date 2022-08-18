@@ -21,8 +21,9 @@ if btnResult:
     else:
         print("No GPU available, using the CPU instead.")
         device = torch.device("cpu")
-    model.to(device)    
+        
     model = torch.load(url, map_location=torch.device('cpu'))
+    model.to(device)
     model.eval()
     # model = torch.hub.load_state_dict_from_url('https://github.com/Ghani-25/waapred/blob/db5336462ef64618a84fca6ba4e7224316fe7393/BESTmodel_weights.pt')
     # model.eval()
