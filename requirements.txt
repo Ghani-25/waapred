@@ -1,11 +1,3 @@
-torch
-torchvision
 Flask
 Flask_Cors
 Flask_RESTful
-numba
-numpy
-pandas
-streamlit
-transformers
-gdown
