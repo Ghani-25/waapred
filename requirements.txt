@@ -5,5 +5,4 @@ numba
 numpy
 pandas
 streamlit
-transformers
-gdown
+
