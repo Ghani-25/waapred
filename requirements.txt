@@ -1,7 +1,6 @@
 Flask
 Flask_Cors
 Flask_RESTful
-torch
 numba
 numpy
 pandas
