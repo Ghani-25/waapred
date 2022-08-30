@@ -1,5 +1,4 @@
 torch
-torchvision
 Flask
 Flask_Cors
 Flask_RESTful
