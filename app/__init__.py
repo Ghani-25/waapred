@@ -15,10 +15,10 @@ app = Flask(__name__)
 #import the model
 
 
-#url = "https://github.com/Ghani-25/waapred/raw/master/BESTmodel_weights.pt"
-#output = "BESTmodel_weights.pt"
-#gdown.download(url, output, quiet=False)
-urll = 'BESTmodel_weights.pt'
+url = "https://drive.google.com/uc?export=download&id=1rBG3CI5b7uG90TOX7c4mJytdPF560M_F"
+output = "BESTmodel_weights.pt"
+gdown.download(url, output, quiet=False)
+urll = './BESTmodel_weights.pt'
 device = torch.device("cpu") if torch.cuda.is_available() else torch.device("cpu")        
 model = torch.load(urll, map_location=torch.device('cpu'))
 model.to(device)
