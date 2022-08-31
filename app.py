@@ -4,7 +4,7 @@ import os
 import math
 import torch
 import pandas as pd
-url = "https://github.com/Ghani-25/waapred/raw/master/BESTmodel_weights.pt"
+url = "https://drive.google.com/uc?export=download&id=1rBG3CI5b7uG90TOX7c4mJytdPF560M_F"
 output = "BESTmodel_weights.pt"
 gdown.download(url, output, quiet=False)
 
