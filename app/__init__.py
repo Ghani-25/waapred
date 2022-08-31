@@ -26,9 +26,17 @@ model.eval()
 
 #create our "home" route using the "index.html" page
 
-@app.route("/")
+@app.route("/", methods = ['POST'])
 def index():
-    return render_template("index.html")
+    BASE_MODEL = "camembert-base"
+    tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
+    y_preds = []
+    encoded = tokenizer(request.form.get("comment"), truncation=True, padding="max_length", max_length=256, return_tensors="pt").to("cpu")
+    y_preds += model(**encoded).logits.reshape(-1).tolist()
+
+    pd.set_option('display.max_rows', 500)
+    df = pd.DataFrame([request.form.get("comment"), y_preds], ["CONTENT", "Prediction"]).T
+    return render_template('simple.html',  tables=[df.to_html(classes='data')], titles=df.columns.values)
 
 #Set a post method to yield predictions on page
 @app.route('/', methods = ['POST'])
