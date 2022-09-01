@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'waapred'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_60E967FFD04A4641AA55AE5DF69A6428 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A3E56167E0044C6E9E5ABB3AEEF8CD10 }}
