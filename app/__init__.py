@@ -40,4 +40,4 @@ def predict():
 
     pd.set_option('display.max_rows', 500)
     df = pd.DataFrame([request.form.get("comment"), y_preds], ["CONTENT", "Prediction"]).T
-    return render_template('simple.json',  tables=[df.to_json(orient = 'records')], titles=df.columns.values)
+    return df.to_json(orient = 'records')
