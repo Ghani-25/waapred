@@ -39,6 +39,17 @@ if btnResult:
     encoded = tokenizer(queryText, truncation=True, padding="max_length", max_length=256, return_tensors="pt").to("cpu")
     y_preds += model(**encoded).logits.reshape(-1).tolist()
 
+    indications = ["Rédiger un message compris entre 100 et 150 caractères", "Mettre la phrase d'accroche en avant", "S'adresser à la personne avec son prénom/nom"]
+    if y_preds[0] <= 20.60 :
+        realvalue = y_preds[0]
+        realone = f'Le taux de prédiction est compris entre {realvalue-((realvalue*11)/100)} et {realvalue+((realvalue*11)/100)}, pensez à modifier votre message en considérant les indications suivantes {*indications,}'
+    elif y_preds[0] > 20.60 and y_preds[0] < 22.99 :
+        realvalue = y_preds[0] * 2.11
+        realone = f'Le taux de prédiction est compris entre {realvalue-((realvalue*11)/100)} et {realvalue+((realvalue*11)/100)}, votre message peut etre amélioré en considérant les indications suivantes {*indications,}'
+    else:
+        realvalue = y_preds[0] * 3.11
+        realone = f'Le taux de prédiction est compris entre {realvalue-((realvalue*11)/100)} et {realvalue+((realvalue*11)/100)}, votre message semblerait être bon :)'
+
     pd.set_option('display.max_rows', 500)
-    df = pd.DataFrame([queryText, y_preds], ["CONTENT", "Prediction"]).T
+    df = pd.DataFrame([queryText, realone], ["CONTENT", "Prediction"]).T
     st.dataframe(df)
